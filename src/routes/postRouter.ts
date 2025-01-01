@@ -6,7 +6,8 @@ import {
   getAllPosts,
   updatePost,
   deletePostById,
-  getPostsByUser
+  getPostsByUser,
+  searchPosts,
 } from '../controllers/posts/postsController';
 
 const router = express.Router();
@@ -29,6 +30,9 @@ router.patch('/:id', updatePost);
 
 // Delete a post by ID
 router.delete('/:id', deletePostById);
+
+//Search posts by params
+router.get("/search/:param", searchPosts);
 
 
 

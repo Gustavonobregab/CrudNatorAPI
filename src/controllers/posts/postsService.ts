@@ -58,3 +58,19 @@ export const deletePostById = async (id: string) => {
   const deletedPost = await postModel.findByIdAndDelete(id);
   return deletedPost;
 };
+
+/**
+ * Busca posts com base em um parâmetro de consulta (termo)
+ * @param searchTerm - O termo de busca
+ */
+export const searchPost = async (searchTerm: string) => {
+  const regex = new RegExp(searchTerm, 'i'); 
+  const posts = await postModel.find({
+    $or: [
+      { title: { $regex: regex } },   // Busca no campo 'title'
+      { content: { $regex: regex } } // Busca no campo 'content'
+    ],
+  });
+
+  return posts; 
+};  
