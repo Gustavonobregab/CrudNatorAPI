@@ -74,3 +74,15 @@ export const searchPost = async (searchTerm: string) => {
 
   return posts; 
 };  
+
+export const filteredPostsButton = async (searchTerm: string) => {
+  const validAreas = ['backend', 'frontend', 'devops', 'uxui'];
+
+  // Verifica se o searchTerm está dentro das áreas válidas
+  if (validAreas.includes(searchTerm.toLowerCase())) {
+    const posts = await postModel.find({ area: searchTerm });
+    return posts;
+  }
+
+  return [];
+};

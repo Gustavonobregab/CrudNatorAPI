@@ -8,6 +8,8 @@ import {
   deletePostById,
   getPostsByUser,
   searchPosts,
+  filterPostsButton
+  
 } from '../controllers/posts/postsController';
 
 const router = express.Router();
@@ -33,6 +35,9 @@ router.delete('/:id', deletePostById);
 
 //Search posts by params
 router.get("/search/:param", searchPosts);
+
+//Filter posts by his area
+router.get("/filter/:param", filterPostsButton )
 
 
 

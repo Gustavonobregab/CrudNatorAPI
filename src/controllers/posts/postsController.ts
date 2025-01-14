@@ -7,6 +7,7 @@ import {
   updatePost as modifyPost, 
   deletePostById as removePost,
   searchPost as searchPost,
+  filteredPostsButton as filteredPostsButton,
 } from './postsService';
 
 /**
@@ -128,3 +129,14 @@ export const searchPosts = async (req: Request, res: Response, next: NextFunctio
     next(error);
   }
 };
+
+
+export const filterPostsButton = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const param  = req.params.param; 
+    try {
+      const filteredPosts = await filteredPostsButton(param)
+      res.status(200).json({filteredPosts});
+    } catch (error) {
+      next(error)
+    }
+  }
