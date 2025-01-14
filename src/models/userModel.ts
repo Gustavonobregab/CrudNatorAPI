@@ -21,6 +21,10 @@ const userSchema = new Schema({
   description: { 
     type: String,
     select: true,
+  },
+  link: { 
+    type: String,
+    required: false, 
   }
 });
 

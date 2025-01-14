@@ -2,17 +2,15 @@ import { InferSchemaType, model, Schema, Types } from 'mongoose';
 
 const postSchema = new Schema(
   {
-    author: { type: Types.ObjectId, ref: 'User', required: true }, // Referência ao modelo User
+    author: { type: Types.ObjectId, ref: 'User', required: true }, 
     title: { type: String, required: true },
     content: { type: String, required: true },
     area: { type: String, required: true },
-    link: { type: String, required: false }, // Campo opcional para links
+    link: { type: String, required: false }, 
   },
-  { timestamps: true } // Campos automáticos de criação e atualização
+  { timestamps: true } 
 );
 
-// Definindo o tipo para o Post com base no schema
 type Post = InferSchemaType<typeof postSchema>;
 
-// Exportando o modelo para ser usado no controlador
 export default model<Post>('Post', postSchema);
