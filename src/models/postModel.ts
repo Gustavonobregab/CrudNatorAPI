@@ -6,7 +6,8 @@ const postSchema = new Schema(
     title: { type: String, required: true },
     content: { type: String, required: true },
     area: { type: String, required: true },
-    link: { type: String, required: false }, // Campo opcional para links
+    link: { type: String, required: true }, 
+    image: { type: String, required: true}
   },
   { timestamps: true } // Campos automáticos de criação e atualização
 );

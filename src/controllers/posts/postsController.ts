@@ -12,19 +12,24 @@ import {
  * Cria um novo post verificando se todos os parâmetros necessários estão presentes
  */
 export const newPost = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const { title, content, area, link } = req.body;
+  const { title, content, area, link} = req.body;
+  const imgFile = req.file
   const userId = req.params.userId;  // O ID do usuário vem do middleware de autenticação, assumindo que req.user está presente
 
 
   try {
     // Validando 
-    if (!title || !content || !area) {
+    if (!title || !content || !area || !link) {
       res.status(400).json({ message: 'Parameters Missing!' });
+      return;
+    }
+    if (!imgFile) {
+      res.status(400).json({ message: 'Image file is required!' });
       return;
     }
 
     // Criando um novo post
-    const newPost = await createPost(userId, title, content, area, link);
+    const newPost = await createPost(userId, title, content, area, link, imgFile);
     res.status(201).json({ message: 'Post created successfully!', post: newPost });
   } catch (error) {
     next(error); 
