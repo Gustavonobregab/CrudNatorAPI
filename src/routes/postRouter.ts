@@ -11,11 +11,12 @@ import {
   filterPostsButton
   
 } from '../controllers/posts/postsController';
+import { authenticateToken } from '../middlewares/userAuthMiddleWare';
 
 const router = express.Router();
 
 // Create a new post
-router.post('/createPost/:userId', newPost);
+router.post('/createPost/:userId',authenticateToken, newPost);
 
 // Return all user posts
 router.get('/postsByUser/:userId', getPostsByUser)
