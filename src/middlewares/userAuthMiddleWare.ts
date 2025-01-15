@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import userModel from '../models/userModel';
 import { config } from '../config/config';
 
-export const authenticateToken = async (
+export const authenticateTokenMiddleWare = async (
   req: Request,
   res: Response,
   next: NextFunction
