@@ -15,8 +15,10 @@ import { authenticateTokenMiddleWare } from '../middlewares/userAuthMiddleWare';
 
 const router = express.Router();
 
+import upload from '../config/multer'
+
 // Create a new post
-router.post('/createPost/:userId',authenticateTokenMiddleWare, newPost);
+router.post('/createPost/:userId',authenticateTokenMiddleWare, upload.single("file"), newPost);
 
 // Return all user posts
 router.get('/postsByUser/:userId', authenticateTokenMiddleWare, getPostsByUser)
