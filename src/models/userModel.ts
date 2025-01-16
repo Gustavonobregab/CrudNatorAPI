@@ -18,6 +18,14 @@ const userSchema = new Schema({
     required: true,
     select: false,
   },
+  description: { 
+    type: String,
+    select: true,
+  },
+  link: { 
+    type: String,
+    required: false, 
+  }
 });
 
 function obfuscate(value: string): string {

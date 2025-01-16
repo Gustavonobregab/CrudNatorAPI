@@ -10,7 +10,7 @@ import { config } from '../../config/config';
  * @param email - The email of the new user.
  * @param passwordRaw - The raw password to be hashed.
  */
-export const createUser = async (username: string, email: string, passwordRaw: string) => {
+export const createUser = async (username: string, email: string, passwordRaw: string, _description: any) => {
   const existingUser = await userModel.findOne({ email }).exec();
   if (existingUser) {
     throw new Error('Email already taken. Please choose a different one.');
@@ -28,6 +28,7 @@ export const createUser = async (username: string, email: string, passwordRaw: s
     username: username,
     email: email,
     password: passwordHashed,
+    description: _description,
   });
 
   return newUser;

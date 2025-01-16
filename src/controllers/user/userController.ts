@@ -10,7 +10,7 @@ export const signUp = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  const { username, email, password } = req.body;
+  const { username, email, password, description } = req.body;
 
   try {
     // Validating if username, email, and password are provided
@@ -20,7 +20,7 @@ export const signUp = async (
     }
 
     // Creating a new user
-    const newUser = await createUser(username, email, password);
+    const newUser = await createUser(username, email, password, description);
     res.status(201).json({ message: 'User created successfully!', user: newUser });
   } catch (error) {
     if (error instanceof Error) {
