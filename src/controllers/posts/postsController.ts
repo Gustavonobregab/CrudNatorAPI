@@ -43,8 +43,17 @@ export const newPost = async (req: Request, res: Response, next: NextFunction): 
  */
 export const getAllPosts = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const posts = await fetchAllPosts();
-    res.status(200).json({ posts });
+    const page = parseInt(req.query.page as string) || 1; // Página atual (default: 1)
+    const limit = parseInt(req.query.limit as string) || 10; // Itens por página (default: 10)
+
+    const { posts, total } = await fetchAllPosts(page, limit);
+
+    res.status(200).json({
+      posts,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit),
+    });
   } catch (error) {
     next(error);
   }
