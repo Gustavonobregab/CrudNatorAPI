@@ -1,4 +1,5 @@
 import express from 'express'
+import rateLimit from 'express-rate-limit';
 import { Router, Request, Response } from 'express'
 import mongoose from 'mongoose'
 import { config } from './config/config'
@@ -8,14 +9,22 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 100, 
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true, 
+  legacyHeaders: false, 
+});
 
 const server = express()
 const route = Router()
 server.use(express.json())
 server.use(route)
 server.use(express.urlencoded({ limit: '10mb', extended: true }));
-server.use(bodyParser.json({ limit: '10mb' }));  // Ajuste o valor conforme necessário
+server.use(bodyParser.json({ limit: '10mb' }));  
 server.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+server.use(limiter);
 
 
 
