@@ -17,8 +17,19 @@ const limiter = rateLimit({
   legacyHeaders: false, 
 });
 
+
+
 const server = express()
 const route = Router()
+
+// 🛑 Adicione o middleware CORS antes das rotas
+server.use(cors({
+  origin: 'http://localhost:3001', // Permitir apenas essa origem
+  methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
+  allowedHeaders: 'Content-Type,Authorization' // Cabeçalhos permitidos
+}));
+
+
 server.use(express.json())
 server.use(route)
 server.use(express.urlencoded({ limit: '10mb', extended: true }));
