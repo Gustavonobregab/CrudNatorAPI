@@ -9,6 +9,8 @@ import {
   searchPost as searchPost,
   filteredPostsButton as filteredPostsButton,
 } from './postsService';
+import { errorMessages } from '../../utils/errorMessages';
+import { AppError } from '../../middlewares/errorHandlingMiddleware';
 
 /**
  * Cria um novo post verificando se todos os parâmetros necessários estão presentes
@@ -20,17 +22,13 @@ export const newPost = async (req: Request, res: Response, next: NextFunction): 
 
 
   try {
-    // Validando 
     if (!title || !content || !area || !link) {
-      res.status(400).json({ message: 'Parameters Missing!' });
-      return;
-    }
-    if (!imgFile) {
-      res.status(400).json({ message: 'Image file is required!' });
-      return;
-    }
+      throw new AppError(errorMessages.PARAMETERS_MISSING, 400);
+  }
+  if (!imgFile) {
+      throw new AppError(errorMessages.IMAGE_FILE_REQUIRED, 400);
+  }
 
-    // Criando um novo post
     const newPost = await createPost(userId, title, content, area, link, imgFile);
     res.status(201).json({ message: 'Post created successfully!', post: newPost });
   } catch (error) {
@@ -43,8 +41,17 @@ export const newPost = async (req: Request, res: Response, next: NextFunction): 
  */
 export const getAllPosts = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const posts = await fetchAllPosts();
-    res.status(200).json({ posts });
+    const page = parseInt(req.query.page as string) || 1; // Página atual (default: 1)
+    const limit = parseInt(req.query.limit as string) || 10; // Itens por página (default: 10)
+
+    const { posts, total } = await fetchAllPosts(page, limit);
+
+    res.status(200).json({
+      posts,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit),
+    });
   } catch (error) {
     next(error);
   }

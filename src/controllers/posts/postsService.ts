@@ -12,12 +12,11 @@ export const createPost = async (userId: string, title: string, content: string,
   return newPost;
 };
 
-/**
- * Obtém todos os posts do banco de dados
- */
-export const getAllPosts = async () => {
-  const posts = await postModel.find();
-  return posts;
+export const getAllPosts = async (page: number, limit: number) => {
+  const skip = (page - 1) * limit; // Calcula o offset
+  const posts = await postModel.find().skip(skip).limit(limit); // Adiciona paginação
+  const total = await postModel.countDocuments(); // Total de posts no banco
+  return { posts, total };
 };
 
 /**
