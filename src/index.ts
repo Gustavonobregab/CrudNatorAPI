@@ -19,10 +19,12 @@ const limiter = rateLimit({
   legacyHeaders: false, 
 });
 
+
+
 const server = express()
 const route = Router()
 
-// Middlewares
+server.use(cors());
 server.use(express.json())
 server.use(route)
 server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
@@ -40,10 +42,3 @@ mongoose
 // Routes
 server.use('/api/post', postRouter) // Routes for creating customer info
 server.use('/api/users', userRoutes) // Routes for login
-
-// Server listener
-const PORT = config.server.port || 3000
-server.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`),
-  console.log(`Documentation running on http://localhost:${PORT}/docs`)
-})
