@@ -47,5 +47,8 @@ mongoose
 
 server.use('/api/post', postRouter) //Routes for create costumers info
 server.use('/api/users', userRoutes) //Routes for login
+server.get('/', (req: Request, res: Response) => {
+  res.send('Hello World');
+});
 
 server.listen(3000, () => console.log(`Server is running on port ${3000}`))
