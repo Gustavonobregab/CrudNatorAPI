@@ -24,7 +24,7 @@ const route = Router()
 
 // 🛑 Adicione o middleware CORS antes das rotas
 server.use(cors({
-  origin: 'http://localhost:3001', // Permitir apenas essa origem
+  origin: 'http://localhost:3000', // Permitir apenas essa origem
   methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
   allowedHeaders: 'Content-Type,Authorization' // Cabeçalhos permitidos
 }));
