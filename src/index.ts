@@ -22,12 +22,15 @@ const limiter = rateLimit({
 const server = express()
 const route = Router()
 
-// 🛑 Adicione o middleware CORS antes das rotas
+/* 🛑 Adicione o middleware CORS antes das rotas
 server.use(cors({
   origin: 'http://localhost:3000', // Permitir apenas essa origem
   methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
   allowedHeaders: 'Content-Type,Authorization' // Cabeçalhos permitidos
 }));
+*/
+server.use(cors());
+
 
 
 server.use(express.json())
@@ -48,7 +51,7 @@ mongoose
 server.use('/api/post', postRouter) //Routes for create costumers info
 server.use('/api/users', userRoutes) //Routes for login
 server.get('/', (req: Request, res: Response) => {
-  res.send('Hello World');
+  res.send('Hello World!');
 });
 
 server.listen(3000, () => console.log(`Server is running on port ${3000}`))
