@@ -1,6 +1,1 @@
-{
-  "root": [
-    "./src/index.ts"
-  ],
-  "version": "5.6.2"
-}
+{"root":["./src/index.ts","./src/config/config.ts","./src/config/multer.ts","./src/controllers/posts/postscontroller.ts","./src/controllers/posts/postsservice.ts","./src/controllers/user/usercontroller.ts","./src/controllers/user/userservice.ts","./src/middlewares/userauthmiddleware.ts","./src/models/postmodel.ts","./src/models/usermodel.ts","./src/routes/postrouter.ts","./src/routes/userrouter.ts","./src/utils/formatdata.ts"],"version":"5.6.2"}
