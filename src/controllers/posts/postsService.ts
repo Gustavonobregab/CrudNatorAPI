@@ -7,8 +7,8 @@ import postModel from '../../models/postModel';
  * @param area - A área do post (por exemplo, tecnologia, ciência, etc.)
  * @param link - O link relacionado ao post
  */
-export const createPost = async (userId: string, title: string, content: string, area: string, link: string, imgFile: Express.Multer.File) => {
-  const newPost = await postModel.create({author: userId, title, content, area, link, image: imgFile.path });
+export const createPost = async (userId: string, title: string, content: string, area: string, link: string, /* imgFile: Express.Multer.File */) => {
+  const newPost = await postModel.create({author: userId, title, content, area, link,/* image: imgFile.path */});
   return newPost;
 };
 

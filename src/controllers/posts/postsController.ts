@@ -17,7 +17,7 @@ import { AppError } from '../../middlewares/errorHandlingMiddleware';
  */
 export const newPost = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { title, content, area, link} = req.body;
-  const imgFile = req.file
+ // const imgFile = req.file
   const userId = req.params.userId;  // O ID do usuário vem do middleware de autenticação, assumindo que req.user está presente
 
 
@@ -25,11 +25,9 @@ export const newPost = async (req: Request, res: Response, next: NextFunction): 
     if (!title || !content || !area || !link) {
       throw new AppError(errorMessages.PARAMETERS_MISSING, 400);
   }
-  if (!imgFile) {
-      throw new AppError(errorMessages.IMAGE_FILE_REQUIRED, 400);
-  }
 
-    const newPost = await createPost(userId, title, content, area, link, imgFile);
+
+    const newPost = await createPost(userId, title, content, area, link, /*imgFile*/);
     res.status(201).json({ message: 'Post created successfully!', post: newPost });
   } catch (error) {
     next(error);
