@@ -42,3 +42,10 @@ mongoose
 // Routes
 server.use('/api/post', postRouter) // Routes for creating customer info
 server.use('/api/users', userRoutes) // Routes for login
+
+
+const PORT = config.server.port || 3000
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`),
+  console.log(`Documentation running on http://localhost:${PORT}/docs`)
+})
