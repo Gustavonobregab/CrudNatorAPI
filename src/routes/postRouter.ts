@@ -11,29 +11,29 @@ import {
   filterPostsButton
   
 } from '../controllers/posts/postsController';
-import { authenticateTokenMiddleWare } from '../middlewares/userAuthMiddleWare';
+//import { authenticateTokenMiddleWare } from '../middlewares/userAuthMiddleWare';  depois, implementar o authenticateTokenMiddleWare nas rotas que precisem
 
 const router = express.Router();
 
 import upload from '../config/multer'
 
 // Create a new post
-router.post('/createPost/:userId',authenticateTokenMiddleWare, upload.single("file"), newPost);
+router.post('/createPost/:userId', upload.single("file"), newPost);
 
 // Return all user posts
-router.get('/postsByUser/:userId', authenticateTokenMiddleWare, getPostsByUser)
+router.get('/postsByUser/:userId', getPostsByUser)
 
 // Fetch all posts
 router.get('/', getAllPosts);
 
 // Fetch a post by ID
-router.get('/:id',authenticateTokenMiddleWare, getPostById);
+router.get('/:id', getPostById);
 
 // Update an existing post
-router.patch('/:id',authenticateTokenMiddleWare, updatePost);
+router.patch('/:id', updatePost);
 
 // Delete a post by ID
-router.delete('/:id', authenticateTokenMiddleWare, deletePostById);
+router.delete('/:id', deletePostById);
 
 //Search posts by params
 router.get("/search/:param", searchPosts);
