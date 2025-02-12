@@ -6,6 +6,8 @@ import { config } from './config/config'
 import postRouter from './routes/postRouter'
 import userRoutes from './routes/userRouter'
 import bodyParser from 'body-parser';
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require("../swagger_output.json");
 import cors from 'cors';
 
 
@@ -22,36 +24,28 @@ const limiter = rateLimit({
 const server = express()
 const route = Router()
 
-/* 🛑 Adicione o middleware CORS antes das rotas
-server.use(cors({
-  origin: 'http://localhost:3000', // Permitir apenas essa origem
-  methods: 'GET,POST,PUT,DELETE', // Métodos permitidos
-  allowedHeaders: 'Content-Type,Authorization' // Cabeçalhos permitidos
-}));
-*/
 server.use(cors());
-
-
-
 server.use(express.json())
 server.use(route)
+server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 server.use(express.urlencoded({ limit: '10mb', extended: true }));
 server.use(bodyParser.json({ limit: '10mb' }));  
 server.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 server.use(limiter);
 
-
-
+// Database connection
 mongoose
   .connect(config.mongo.url)
-  .then(() => console.log('Connected!'))
+  .then(() => console.log('Connected to MongoDB!'))
   .catch((err) => console.error('Connection error:', err))
 
+// Routes
+server.use('/api/post', postRouter) // Routes for creating customer info
+server.use('/api/users', userRoutes) // Routes for login
 
-server.use('/api/post', postRouter) //Routes for create costumers info
-server.use('/api/users', userRoutes) //Routes for login
-server.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
 
-server.listen(3000, () => console.log(`Server is running on port ${3000}`))
+const PORT = config.server.port || 3000
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`),
+  console.log(`Documentation running on http://localhost:${PORT}/docs`)
+})
