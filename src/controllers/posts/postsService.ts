@@ -74,14 +74,15 @@ export const searchPost = async (searchTerm: string) => {
   return posts; 
 };  
 
-export const filteredPostsButton = async (searchTerm: string) => {
+export const filteredPostsButton = async (searchTerm: string, page: number, limit: number) => {
   const validAreas = ['backend', 'frontend', 'devops', 'uxui'];
-
-  // Verifica se o searchTerm está dentro das áreas válidas
-  if (validAreas.includes(searchTerm.toLowerCase())) {
-    const posts = await postModel.find({ area: searchTerm });
-    return posts;
+  if (!validAreas.includes(searchTerm.toLowerCase())) {
+    return { posts: [], total: 0 };
   }
 
-  return [];
+  const skip = (page - 1) * limit;
+  const posts = await postModel.find({ area: searchTerm }).skip(skip).limit(limit);
+  const total = await postModel.countDocuments({ area: searchTerm });
+  
+  return { posts, total };
 };

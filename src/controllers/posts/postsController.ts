@@ -145,11 +145,20 @@ export const searchPosts = async (req: Request, res: Response, next: NextFunctio
 
 
 export const filterPostsButton = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const param  = req.params.param; 
-    try {
-      const filteredPosts = await filteredPostsButton(param)
-      res.status(200).json({filteredPosts});
-    } catch (error) {
-      next(error)
-    }
+  const param = req.params.param;
+  const page = parseInt(req.query.page as string) || 1;
+  const limit = parseInt(req.query.limit as string) || 10;
+
+  try {
+    const { posts, total } = await filteredPostsButton(param, page, limit);
+    
+    res.status(200).json({
+      posts,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit),
+    });
+  } catch (error) {
+    next(error);
   }
+  };
