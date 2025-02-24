@@ -4,22 +4,20 @@ CrudNator - Backend
 API
 
 
-
-
-CrudNator é uma plataforma social desenvolvida para conectar programadores que buscam colaborar em projetos. Este backend é responsável pela autenticação de usuários, segurança dos dados e gerenciamento das interações entre usuários e projetos.
-Tecnologias Utilizadas
+CrudNator is a social platform developed to connect programmers seeking to collaborate on projects. This backend is responsible for user authentication, data security, and managing interactions between users and projects.
+Technologies Used
 
 Back-end:
-Node.js: Ambiente de execução JavaScript no servidor.
-Express: Framework minimalista para a construção de APIs web rápidas e escaláveis.
-TypeScript: Superset do JavaScript com tipagem estática, melhorando a manutenção e a escalabilidade do código.
-JWT (JSON Web Tokens): Sistema de autenticação baseado em tokens para segurança e autorização.
-Bcrypt.js: Biblioteca para criptografar senhas de forma segura.
-MongoDB: Banco de dados NoSQL para armazenar dados de usuários e projetos.
-Mongoose: ODM para MongoDB, simplificando a interação com o banco de dados.
-Funcionalidades
+Node.js: JavaScript runtime environment on the server.
+Express: Minimalistic framework for building fast and scalable web APIs.
+TypeScript: Superset of JavaScript with static typing, improving code maintainability and scalability.
+JWT (JSON Web Tokens): Token-based authentication system for security and authorization.
+Bcrypt.js: Library for securely encrypting passwords.
+MongoDB: NoSQL database for storing user and project data.
+Mongoose: ODM for MongoDB, simplifying interaction with the database.
+Features
 
-Autenticação e Autorização: Usuários podem se registrar, fazer login e gerenciar suas credenciais de forma segura utilizando tokens JWT.
-Cadastro de Projetos: Usuários podem criar, editar e excluir projetos com detalhes sobre a tecnologia utilizada, descrição e necessidade de colaboração.
-Perfil do Usuário: Cada usuário possui um perfil onde pode ver seus projetos e atualizar suas informações pessoais.
-Busca de Projetos e Colaboradores: Sistema de busca que permite filtrar projetos por tecnologia, experiência e tags específicas.
+Authentication and Authorization: Users can register, log in, and manage their credentials securely using JWT tokens.
+Project Registration: Users can create, edit, and delete projects with details about the technology used, project description, and collaboration needs.
+User Profile: Each user has a profile where they can view their projects and update their personal information.
+Project and Collaborator Search: A search system that allows users to filter projects by technology, experience, and specific tags.
