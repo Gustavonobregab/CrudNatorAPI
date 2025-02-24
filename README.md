@@ -1,18 +1,19 @@
 CrudNator - Backend API
 
-CrudNator is a social platform for programmers built to connect developers seeking collaboration on projects. This is the backend of the platform, developed with Node.js, Express, and TypeScript. It handles user authentication, data security, and provides endpoints for interacting with platform data.
-Technologies Used
+CrudNator é uma plataforma social desenvolvida para conectar programadores que buscam colaborar em projetos. Este backend é responsável pela autenticação de usuários, segurança dos dados e gerenciamento das interações entre usuários e projetos.
+Tecnologias Utilizadas
 
-Node.js: JavaScript runtime for executing code on the server.
-Express: Web framework for Node.js, used to build fast and scalable APIs.
-TypeScript: A superset of JavaScript that adds static typing, improving code maintainability and scalability.
-JWT (JSON Web Tokens): Used for secure user authentication and authorization.
-Bcrypt.js: Library for hashing passwords to ensure secure storage.
-MongoDB: NoSQL database used to store user and project data.
-Mongoose: ODM library for MongoDB, simplifying interaction with the database.
-Features
+Back-end:
+Node.js: Ambiente de execução JavaScript no servidor.
+Express: Framework minimalista para a construção de APIs web rápidas e escaláveis.
+TypeScript: Superset do JavaScript com tipagem estática, melhorando a manutenção e a escalabilidade do código.
+JWT (JSON Web Tokens): Sistema de autenticação baseado em tokens para segurança e autorização.
+Bcrypt.js: Biblioteca para criptografar senhas de forma segura.
+MongoDB: Banco de dados NoSQL para armazenar dados de usuários e projetos.
+Mongoose: ODM para MongoDB, simplificando a interação com o banco de dados.
+Funcionalidades
 
-User Authentication: Login and registration system with password hashing and token-based authentication (JWT).
-Project Management: Create, edit, view, and delete frontend and backend projects securely.
-Collaborator Search: Allows users to search for developers with complementary skills for collaboration.
-Data Protection: All data is stored securely, with hashed passwords and token-based authentication for data integrity.
+Autenticação e Autorização: Usuários podem se registrar, fazer login e gerenciar suas credenciais de forma segura utilizando tokens JWT.
+Cadastro de Projetos: Usuários podem criar, editar e excluir projetos com detalhes sobre a tecnologia utilizada, descrição e necessidade de colaboração.
+Perfil do Usuário: Cada usuário possui um perfil onde pode ver seus projetos e atualizar suas informações pessoais.
+Busca de Projetos e Colaboradores: Sistema de busca que permite filtrar projetos por tecnologia, experiência e tags específicas.
