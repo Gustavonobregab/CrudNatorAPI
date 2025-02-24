@@ -1,4 +1,10 @@
-CrudNator - Backend API
+CrudNator - Backend 
+
+<img width="1800" alt="Screenshot 2025-02-16 at 18 12 05" src="https://github.com/user-attachments/assets/b0dcd4cb-b2ca-4666-af71-4c8623823489" />
+API
+
+
+
 
 CrudNator é uma plataforma social desenvolvida para conectar programadores que buscam colaborar em projetos. Este backend é responsável pela autenticação de usuários, segurança dos dados e gerenciamento das interações entre usuários e projetos.
 Tecnologias Utilizadas
