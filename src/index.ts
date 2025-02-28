@@ -24,6 +24,12 @@ const limiter = rateLimit({
 const server = express()
 const route = Router()
 
+route.get('/', (req: Request, res: Response) => {
+  res.send('Hello World!');
+});
+
+server.use(route);
+
 server.use(cors());
 server.use(express.json())
 server.use(route)
